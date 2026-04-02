@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+            background: #f4f4f4;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>URL Shortener</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="url" name="long_url" placeholder="Enter URL" required>
+        <br>
+        <button type="submit">Shorten</button>
+    </form>
+
+    {% if short_url %}
+        <div class="result">
+            <p>Short URL:</p>
+            <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+        </div>
+    {% endif %}
+</div>
+<div><a href="{% url 'dashboard' %}">Go to Dashboard</a></div>
+</body>
+</html>
