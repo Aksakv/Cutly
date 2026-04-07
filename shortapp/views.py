@@ -4,6 +4,10 @@ import json
 import random,string
 from .models import *
 from django.db.models import Sum
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Hello Aksa! Updated code working 🚀")
 
 def generate_code():
     return "".join(random.choices(string.ascii_letters+string.digits,k=6))
