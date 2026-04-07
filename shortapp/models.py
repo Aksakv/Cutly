@@ -15,9 +15,9 @@ class URLModel(models.Model):
     def save(self,*args,**kwargs):
         short_url =f"{settings.SITE_URL}/{self.short_code}"
         qr = qrcode.make(short_url)
-        bufer =BytesIO()
-        qr.save(bufer,format=
-                'PNG')
+        buffer =BytesIO()
+        qr.save(buffer,format='PNG')
+        buffer.seek(0)
         file_name = f"{self.short_code}.png"
-        self.qr_code.save(file_name,File(bufer),save =False)
+        self.qr_code.save(file_name,File(buffer),save =False)
         super().save(*args,**kwargs)

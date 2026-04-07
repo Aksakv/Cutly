@@ -47,11 +47,16 @@
         <button type="submit">Shorten</button>
     </form>
 
-    {% if short_url %}
+    {% if obje %}
         <div class="result">
             <p>Short URL:</p>
             <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
         </div>
+    {% endif %}
+
+    {% if obj %}
+    <h3>QR Code:</h3>
+    <img src="{{ obj.qr_code.url }}" width="200">
     {% endif %}
 </div>
 <div><a href="{% url 'dashboard' %}">Go to Dashboard</a></div>
