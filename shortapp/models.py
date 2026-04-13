@@ -9,6 +9,7 @@ class URLModel(models.Model):
     long_url = models.URLField()
     short_code = models.CharField(max_length=30,unique=True)
     clicks = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
     qr_code = models.ImageField(upload_to='qr_code/',blank=True,null=True)
     def __str__(self):
         return self.long_url
@@ -21,3 +22,6 @@ class URLModel(models.Model):
         file_name = f"{self.short_code}.png"
         self.qr_code.save(file_name,File(buffer),save =False)
         super().save(*args,**kwargs)
+class ClickEvent(models.Model):
+    url = models.ForeignKey(URLModel, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
