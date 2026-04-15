@@ -22,14 +22,14 @@ class HomeView(View):
         
         existing = URLModel.objects.filter(long_url=long).first()
         if existing:
-            short_url = request.build_absolute_uri('/' + existing.short_code)
+            obj = existing
         else:
             code = generate_code()
             obj = URLModel.objects.create(long_url=long, short_code=code)
-            short_url = request.build_absolute_uri('/' + obj.short_code)
+        short_url = request.build_absolute_uri('/' + obj.short_code)
 
 
-        return render(request,'index.html',{'short_url':short_url})
+        return render(request,'index.html',{'short_url':short_url,'obj':obj})
     
 class RedirectURLView(View):
     def get(self,request,code):
