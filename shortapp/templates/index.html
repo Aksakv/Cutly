@@ -49,6 +49,7 @@
                 <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
 
                 <hr>
+                {% if obj.qr_code %}
                 <strong>QR Code:</strong><br>
 
                 <img src="/media/qr_codes/{{ obj.short_code }}.png" width="180">
@@ -59,6 +60,7 @@
                 <a href="/media/qr_codes/{{ obj.short_code }}.png" download class="btn btn-success btn-sm">
                     Download QR Code
                 </a>
+                {% endif %}
             </div>
         {% endif %}
                     <div class="mt-3">
